@@ -1,5 +1,6 @@
-package com.phonebook;
+package com.phonebook.tests.spring;
 
+import com.phonebook.tests.main.InMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,11 @@ public class PhoneBook {
     /**
      * injection is supported on constructor level.
      *
-     * @param inMemoryRepository
+     * @param repository
      */
     @Autowired
-    public PhoneBook(InMemoryRepository inMemoryRepository) {
-        this.repository = inMemoryRepository;
+    public PhoneBook(InMemoryRepository repository) {
+        this.repository = repository;
     }
 
     /**

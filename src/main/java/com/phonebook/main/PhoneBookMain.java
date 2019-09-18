@@ -1,10 +1,13 @@
-package com.phonebook;
+package com.phonebook.tests.main;
 
+import com.phonebook.tests.spring.ApplicationConfig;
+import com.phonebook.tests.spring.PhoneBook;
+import com.phonebook.tests.spring.PhoneBookFormatter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * PhoneBook entry point

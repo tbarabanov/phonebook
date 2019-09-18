@@ -1,5 +1,6 @@
-package com.phonebook;
+package com.phonebook.tests.spring;
 
+import com.phonebook.tests.main.InMemoryRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import java.util.*;
 
 @Configuration
-@ComponentScan(value = {"com.phonebook"})
+@ComponentScan(value = {"com.phonebook.spring"})
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig {
 
@@ -29,7 +30,7 @@ public class ApplicationConfig {
         return data;
     }
 
-    @Bean
+    @Bean(name = "repository")
     public InMemoryRepository inMemoryRepository(Map<String, Set<String>> defaultData) {
         return new InMemoryRepositoryIml(defaultData);
     }

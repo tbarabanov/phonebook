@@ -1,4 +1,4 @@
-package com.phonebook;
+package com.phonebook.tests.main;
 
 import java.util.Map;
 import java.util.Set;
