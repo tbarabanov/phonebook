@@ -1,8 +1,8 @@
-package com.phonebook.tests.main;
+package com.phonebook.main;
 
-import com.phonebook.tests.spring.ApplicationConfig;
-import com.phonebook.tests.spring.PhoneBook;
-import com.phonebook.tests.spring.PhoneBookFormatter;
+import com.phonebook.spring.ApplicationConfig;
+import com.phonebook.spring.PhoneBook;
+import com.phonebook.spring.PhoneBookFormatter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,7 +20,7 @@ public class PhoneBookMain {
         Scanner sc = new Scanner(System.in);
         sc.useDelimiter(System.getProperty("line.separator"));
 
-        PhoneBook phoneBook = (PhoneBook) context.getBean("phoneBook");
+        PhoneBook phoneBook = context.getBean("phoneBook", PhoneBook.class);
         PhoneBookFormatter renderer = (PhoneBookFormatter) context.getBean("phoneBookFormatter");
 
         renderer.info("type 'exit' to quit.");
@@ -40,7 +40,9 @@ public class PhoneBookMain {
     }
 
     static ApplicationContext newApplicationContext(String... args) {
-        return args.length > 0 && args[0].equals("classPath") ? new ClassPathXmlApplicationContext("application-config.xml") : new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        return args.length > 0 && args[0].equals("classPath")
+                ? new ClassPathXmlApplicationContext("application-config.xml")
+                : new AnnotationConfigApplicationContext(ApplicationConfig.class);
     }
 
 }
