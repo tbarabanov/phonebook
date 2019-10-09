@@ -1,6 +1,6 @@
-package com.phonebook.tests.spring;
+package com.phonebook.spring;
 
-import com.phonebook.tests.main.InMemoryRepository;
+import com.phonebook.main.InMemoryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.LinkedHashMap;

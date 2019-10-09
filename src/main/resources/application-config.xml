@@ -29,15 +29,15 @@
 
     <!--  this is beans declaration  -->
     <!-- constructor level injection -->
-    <bean name="inMemoryRepository" class="com.phonebook.InMemoryRepositoryIml">
+    <bean name="inMemoryRepository" class="com.phonebook.spring.InMemoryRepositoryIml">
         <constructor-arg ref="defaultData"/>
     </bean>
     <!-- autowiring byType -->
-    <bean name="phoneBook" class="com.phonebook.PhoneBook" autowire="byType">
+    <bean name="phoneBook" class="com.phonebook.spring.PhoneBook" autowire="byType">
         <!--        <property name="repository" ref="inMemoryRepository"/>-->
     </bean>
     <!-- properties injection -->
-    <bean name="phoneBookFormatter" class="com.phonebook.PhoneBookFormatter">
+    <bean name="phoneBookFormatter" class="com.phonebook.spring.PhoneBookFormatter">
         <property name="lowerCaseNames" value="${lowerCaseNames}"/>
         <property name="columnsSeparator" value="${columnsSeparator:\t}"/>
     </bean>
