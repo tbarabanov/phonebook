@@ -14,17 +14,17 @@
     <context:property-placeholder location="classpath:application.properties"/>
 
     <!-- this is just a peace of data managed by spring and available by its id-->
-    <util:set id="alexWong">
+    <util:set id="alex">
         <value>+79601232233</value>
     </util:set>
-    <util:set id="billyClark">
+    <util:set id="billy">
         <value>+79213215566</value>
         <value>+79213215567</value>
         <value>+79213215568</value>
     </util:set>
     <util:map id="defaultData" map-class="java.util.HashMap">
-        <entry key="Alex Wong" value-ref="alexWong"/>
-        <entry key="Billy Clark" value-ref="billyClark"/>
+        <entry key="Alex" value-ref="alex"/>
+        <entry key="Billy" value-ref="billy"/>
     </util:map>
 
     <!--  this is beans declaration  -->
@@ -34,7 +34,7 @@
     </bean>
     <!-- autowiring byType -->
     <bean name="phoneBook" class="com.phonebook.spring.PhoneBook" autowire="byType">
-        <!--        <property name="repository" ref="inMemoryRepository"/>-->
+         <property name="repository" ref="inMemoryRepository"/>
     </bean>
     <!-- properties injection -->
     <bean name="phoneBookFormatter" class="com.phonebook.spring.PhoneBookFormatter">
