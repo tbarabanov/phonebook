@@ -22,11 +22,11 @@ public class PhoneBookTest {
     private PhoneBook phoneBook;
 
     @Test
-    public void alex_wong_phone_numbers() {
+    public void get_person_phone_numbers() {
         final Set<String> expected = new HashSet<>(asList("+79601232233"));
         assertEquals("phone numbers do not match",
                 expected,
-                phoneBook.findAll().get("Alex Wong"));
+                phoneBook.findAll().get("Alex"));
     }
 
 }
