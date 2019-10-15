@@ -21,6 +21,7 @@ public class PhoneBookTest {
     @Autowired
     private PhoneBook phoneBook;
 
+    // TODO: implement a couple of tests for PhoneBook.class
     @Test
     public void get_person_phone_numbers() {
         final Set<String> expected = new HashSet<>(asList("+79601232233"));

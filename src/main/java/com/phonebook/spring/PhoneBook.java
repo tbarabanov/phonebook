@@ -13,7 +13,7 @@ import java.util.Set;
 @Service
 public class PhoneBook {
 
-    // @Autowired - can be here
+    // @Autowired
     private InMemoryRepository repository;
 
     public PhoneBook() {
@@ -25,7 +25,7 @@ public class PhoneBook {
      *
      * @param repository
      */
-    @Autowired
+    // @Autowired
     public PhoneBook(InMemoryRepository repository) {
         this.repository = repository;
     }
@@ -47,6 +47,6 @@ public class PhoneBook {
     }
 
     /**
-     * please add required methods here
+     * TODO: please add required methods here
      */
 }
