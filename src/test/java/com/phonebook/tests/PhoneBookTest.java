@@ -21,12 +21,13 @@ public class PhoneBookTest {
     @Autowired
     private PhoneBook phoneBook;
 
+    // TODO: implement a couple of tests for PhoneBook.class
     @Test
-    public void alex_wong_phone_numbers() {
+    public void get_person_phone_numbers() {
         final Set<String> expected = new HashSet<>(asList("+79601232233"));
         assertEquals("phone numbers do not match",
                 expected,
-                phoneBook.findAll().get("Alex Wong"));
+                phoneBook.findAll().get("Alex"));
     }
 
 }
