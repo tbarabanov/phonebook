@@ -30,7 +30,7 @@ public interface InMemoryRepository {
      * @param name
      * @param phone
      */
-    void addPhone(String name, String phone);
+    void addPhone(String name, String[] phone);
 
     /**
      * removes a phone from set. If set becomes empty after deletion remove record "{name:[phone]}" completely

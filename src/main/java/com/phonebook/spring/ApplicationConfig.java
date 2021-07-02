@@ -11,6 +11,7 @@ import java.util.*;
 
 @Configuration
 @ComponentScan(value = {"com.phonebook.spring"})
+@ComponentScan(value = {"com.phonebook"})
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig {
 
@@ -33,6 +34,11 @@ public class ApplicationConfig {
     @Bean(name = "repository")
     public InMemoryRepository inMemoryRepository(Map<String, Set<String>> defaultData) {
         return new InMemoryRepositoryIml(defaultData);
+    }
+
+    @Bean
+    public PhoneBookFormatter phoneBookFormatter(){
+        return new PhoneBookFormatter();
     }
 
 }

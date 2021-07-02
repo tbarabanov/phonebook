@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * PhoneBook entry point
@@ -26,13 +27,37 @@ public class PhoneBookMain {
         renderer.info("type 'exit' to quit.");
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            if (line.equals("exit")) {
-                renderer.info("Have a good day...");
-                break;
-            }
+            System.out.println(line);
             try {
-                // TODO: add your code here
-                throw new UnsupportedOperationException("Implement it!");
+                if ("exit".contains(line.toLowerCase())) {
+                    renderer.info("Have a good day...");
+                    break;
+                }
+                if (line.toLowerCase().startsWith("add")) {
+                    String[] consoleArguments = line.split(" ");
+                    String[] phones = consoleArguments[2].split(",");
+                    phoneBook.addNumber(consoleArguments[1], phones);
+                    renderer.info(phoneBook.findAll().toString());
+                    break;
+                }
+                if ("show".equals(line.toLowerCase())) {
+                    renderer.info(phoneBook.findAll().entrySet().stream()
+                            .map(e -> e.getKey() + " " + e.getValue())
+                            .collect(Collectors.joining("\n")));
+
+                    break;
+                }
+                if (line.toLowerCase().startsWith("remove_phone")) {
+                    String[] consoleArguments = line.split(" ");
+                    try {
+                        phoneBook.deleteNumber(consoleArguments[1]);
+                        renderer.info(phoneBook.findAll().toString());
+                    } catch (IllegalArgumentException e){
+                        renderer.error("There is no such phone");
+                    }
+                    break;
+                }
+                throw new UnsupportedOperationException("Unsupported operation!");
             } catch (Exception e) {
                 renderer.error(e);
             }

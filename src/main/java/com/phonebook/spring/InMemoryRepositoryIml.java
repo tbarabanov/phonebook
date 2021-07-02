@@ -3,9 +3,7 @@ package com.phonebook.spring;
 import com.phonebook.main.InMemoryRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Keeps phoneBook data in memory in ordered in accordance to addition.
@@ -48,12 +46,18 @@ public class InMemoryRepositoryIml implements InMemoryRepository {
     }
 
     @Override
-    public void addPhone(String name, String phone) {
-        throw new UnsupportedOperationException("Implement it!");
+    public void addPhone(String name, String[] phones) {
+        Set<String> phonesSet = new HashSet<String>();
+        for (String phone : phones) {
+            phonesSet.add(phone);
+        }
+        this.data.put(name, phonesSet);
     }
 
     @Override
-    public void removePhone(String phone) throws IllegalArgumentException {
-        throw new UnsupportedOperationException("Implement it!");
+    public void removePhone(String phone) {
+        for (HashMap.Entry<String, Set<String>> pair : this.data.entrySet()){
+            pair.getValue().removeIf(number -> number.equals(phone));
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.phonebook.spring;
 
 import com.phonebook.main.InMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -11,9 +12,10 @@ import java.util.Set;
  * PhoneBook service implementation
  */
 @Service
+@Scope(scopeName = "singleton")
 public class PhoneBook {
 
-    // @Autowired
+//    @Autowired
     private InMemoryRepository repository;
 
     public PhoneBook() {
@@ -25,7 +27,7 @@ public class PhoneBook {
      *
      * @param repository
      */
-    // @Autowired
+    @Autowired
     public PhoneBook(InMemoryRepository repository) {
         this.repository = repository;
     }
@@ -49,4 +51,11 @@ public class PhoneBook {
     /**
      * TODO: please add required methods here
      */
+    public void deleteNumber(String phone) {
+        repository.removePhone(phone);
+    }
+
+    public void addNumber(String name, String[] phone) {
+        repository.addPhone(name, phone);
+    }
 }
