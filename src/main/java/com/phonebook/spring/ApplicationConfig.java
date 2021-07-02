@@ -12,18 +12,16 @@ import java.util.*;
 @Configuration
 @ComponentScan(value = {"com.phonebook.spring"})
 @ComponentScan(value = {"com.phonebook"})
-@PropertySource("classpath:application.properties")
 public class ApplicationConfig {
-
     /**
      * Property placeholder configurer is needed to interpolate property values
      */
-    @Bean
+    @Bean(name = "propertyConfigurer")
     public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean
+    @Bean(name = "defaultdata")
     public Map<String, Set<String>> defaultData() {
         Map<String, Set<String>> data = new LinkedHashMap<>();
         data.put("Alex", new HashSet<>(Arrays.asList("+79601232233")));
@@ -36,9 +34,8 @@ public class ApplicationConfig {
         return new InMemoryRepositoryIml(defaultData);
     }
 
-    @Bean
+    @Bean(name = "phoneBookformatter")
     public PhoneBookFormatter phoneBookFormatter(){
         return new PhoneBookFormatter();
     }
-
 }

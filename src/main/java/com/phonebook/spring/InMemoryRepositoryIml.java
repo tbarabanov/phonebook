@@ -1,6 +1,7 @@
 package com.phonebook.spring;
 
 import com.phonebook.main.InMemoryRepository;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -47,10 +48,7 @@ public class InMemoryRepositoryIml implements InMemoryRepository {
 
     @Override
     public void addPhone(String name, String[] phones) {
-        Set<String> phonesSet = new HashSet<String>();
-        for (String phone : phones) {
-            phonesSet.add(phone);
-        }
+        Set<String> phonesSet = new HashSet<String>(Arrays.asList(phones));
         this.data.put(name, phonesSet);
     }
 

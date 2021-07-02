@@ -2,6 +2,7 @@ package com.phonebook.spring;
 
 import com.phonebook.main.InMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -48,9 +49,6 @@ public class PhoneBook {
         return repository.findAll();
     }
 
-    /**
-     * TODO: please add required methods here
-     */
     public void deleteNumber(String phone) {
         repository.removePhone(phone);
     }

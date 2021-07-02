@@ -2,6 +2,7 @@ package com.phonebook.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -15,12 +16,15 @@ import static java.lang.String.join;
  * Responsible for formatting in {@code PhoneBook} application
  */
 @Component
+@PropertySource("classpath:application.properties")
 public class PhoneBookFormatter {
 
     // comes from application.properties file
     @Value("${lowerCaseNames}")
+    @Autowired
     private boolean lowerCaseNames = false;
     @Value("${columnsSeparator}")
+    @Autowired
     private char columnsSeparator = '|';
 
     /**
@@ -85,6 +89,7 @@ public class PhoneBookFormatter {
     /**
      * @param lowerCaseNames
      */
+
     public void setLowerCaseNames(boolean lowerCaseNames) {
         this.lowerCaseNames = lowerCaseNames;
     }
@@ -92,6 +97,7 @@ public class PhoneBookFormatter {
     /**
      * @param columnsSeparator
      */
+
     public void setColumnsSeparator(char columnsSeparator) {
         this.columnsSeparator = columnsSeparator;
     }

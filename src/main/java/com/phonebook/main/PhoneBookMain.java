@@ -5,6 +5,7 @@ import com.phonebook.spring.PhoneBook;
 import com.phonebook.spring.PhoneBookFormatter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.*;
@@ -27,7 +28,6 @@ public class PhoneBookMain {
         renderer.info("type 'exit' to quit.");
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            System.out.println(line);
             try {
                 if ("exit".contains(line.toLowerCase())) {
                     renderer.info("Have a good day...");
@@ -35,23 +35,23 @@ public class PhoneBookMain {
                 }
                 if (line.toLowerCase().startsWith("add")) {
                     String[] consoleArguments = line.split(" ");
+                    if (consoleArguments.length != 3) {
+                        renderer.error("Invalid number of arguments");
+                    }
                     String[] phones = consoleArguments[2].split(",");
                     phoneBook.addNumber(consoleArguments[1], phones);
-                    renderer.info(phoneBook.findAll().toString());
+                    renderer.show(phoneBook.findAll());
                     break;
                 }
                 if ("show".equals(line.toLowerCase())) {
-                    renderer.info(phoneBook.findAll().entrySet().stream()
-                            .map(e -> e.getKey() + " " + e.getValue())
-                            .collect(Collectors.joining("\n")));
-
+                    renderer.show(phoneBook.findAll());
                     break;
                 }
                 if (line.toLowerCase().startsWith("remove_phone")) {
                     String[] consoleArguments = line.split(" ");
                     try {
                         phoneBook.deleteNumber(consoleArguments[1]);
-                        renderer.info(phoneBook.findAll().toString());
+                        renderer.show(phoneBook.findAll());
                     } catch (IllegalArgumentException e){
                         renderer.error("There is no such phone");
                     }
