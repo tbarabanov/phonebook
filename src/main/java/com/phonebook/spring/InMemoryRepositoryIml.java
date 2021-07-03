@@ -1,7 +1,6 @@
 package com.phonebook.spring;
 
 import com.phonebook.main.InMemoryRepository;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -38,24 +37,42 @@ public class InMemoryRepositoryIml implements InMemoryRepository {
 
     @Override
     public Set<String> findAllPhonesByName(String name) {
-        throw new UnsupportedOperationException("Implement it!");
+        Set<String> numbersForName = new HashSet<>();
+        for (Map.Entry<String, Set<String>> pair : this.data.entrySet()) {
+            if (name.equals(pair.getKey())) {
+                 numbersForName = pair.getValue();
+            }
+        }
+        return numbersForName;
     }
+
 
     @Override
     public String findNameByPhone(String phone) {
-        throw new UnsupportedOperationException("Implement it!");
+        String name = null;
+        for (Map.Entry<String, Set<String>> pair : this.data.entrySet()){
+            for (String number: pair.getValue()) {
+                if (number.equals(phone)){
+                    name = pair.getKey();
+                }
+            }
+        }
+        return name;
     }
 
     @Override
-    public void addPhone(String name, String[] phones) {
-        Set<String> phonesSet = new HashSet<String>(Arrays.asList(phones));
-        this.data.put(name, phonesSet);
+    public void addPhones(String name, String[] phones) {
+        this.data.put(name, new HashSet<>(Arrays.asList(phones)));
+        findAllPhonesByName(name).addAll(Arrays.asList(phones));
     }
 
     @Override
     public void removePhone(String phone) {
-        for (HashMap.Entry<String, Set<String>> pair : this.data.entrySet()){
+        for (Map.Entry<String, Set<String>> pair : this.data.entrySet()){
             pair.getValue().removeIf(number -> number.equals(phone));
+            if (pair.getValue().isEmpty()) {
+                this.data.remove(pair.getKey());
+            }
         }
     }
 }

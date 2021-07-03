@@ -16,7 +16,7 @@ public class ApplicationConfig {
     /**
      * Property placeholder configurer is needed to interpolate property values
      */
-    @Bean(name = "propertyConfigurer")
+    @Bean(name = "propertyconfigurer")
     public static PropertySourcesPlaceholderConfigurer propertyConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
@@ -34,7 +34,7 @@ public class ApplicationConfig {
         return new InMemoryRepositoryIml(defaultData);
     }
 
-    @Bean(name = "phoneBookformatter")
+    @Bean(name = "phonebookformatter")
     public PhoneBookFormatter phoneBookFormatter(){
         return new PhoneBookFormatter();
     }

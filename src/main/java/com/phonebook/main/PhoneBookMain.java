@@ -5,11 +5,8 @@ import com.phonebook.spring.PhoneBook;
 import com.phonebook.spring.PhoneBookFormatter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * PhoneBook entry point
@@ -30,22 +27,22 @@ public class PhoneBookMain {
             String line = sc.nextLine();
             try {
                 if ("exit".contains(line.toLowerCase())) {
-                    renderer.info("Have a good day...");
+                    renderer.info("Have a good day!...");
                     break;
                 }
                 if (line.toLowerCase().startsWith("add")) {
                     String[] consoleArguments = line.split(" ");
                     if (consoleArguments.length != 3) {
-                        renderer.error("Invalid number of arguments");
+                        renderer.error("Invalid amount of arguments");
                     }
                     String[] phones = consoleArguments[2].split(",");
-                    phoneBook.addNumber(consoleArguments[1], phones);
+                    phoneBook.addNumbers(consoleArguments[1], phones);
                     renderer.show(phoneBook.findAll());
-                    break;
+
                 }
                 if ("show".equals(line.toLowerCase())) {
                     renderer.show(phoneBook.findAll());
-                    break;
+
                 }
                 if (line.toLowerCase().startsWith("remove_phone")) {
                     String[] consoleArguments = line.split(" ");
@@ -57,9 +54,9 @@ public class PhoneBookMain {
                     }
                     break;
                 }
-                throw new UnsupportedOperationException("Unsupported operation!");
-            } catch (Exception e) {
-                renderer.error(e);
+
+            } catch (UnsupportedOperationException e) {
+                renderer.error("Unsupported command");
             }
         }
     }

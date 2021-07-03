@@ -28,9 +28,9 @@ public interface InMemoryRepository {
      * add phone number for a name or create new record
      *
      * @param name
-     * @param phone
+     * @param phones
      */
-    void addPhone(String name, String[] phone);
+    void addPhones(String name, String[] phones);
 
     /**
      * removes a phone from set. If set becomes empty after deletion remove record "{name:[phone]}" completely

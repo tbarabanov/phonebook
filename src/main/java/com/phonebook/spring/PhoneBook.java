@@ -15,8 +15,7 @@ import java.util.Set;
 @Service
 @Scope(scopeName = "singleton")
 public class PhoneBook {
-
-//    @Autowired
+    //    @Autowired
     private InMemoryRepository repository;
 
     public PhoneBook() {
@@ -50,10 +49,14 @@ public class PhoneBook {
     }
 
     public void deleteNumber(String phone) {
-        repository.removePhone(phone);
+        if (repository.findNameByPhone(phone) == null){
+            throw new IllegalArgumentException("There is no person with such name in phonebook");
+        } else {
+            repository.removePhone(phone);
+        }
     }
 
-    public void addNumber(String name, String[] phone) {
-        repository.addPhone(name, phone);
+    public void addNumbers(String name, String[] phones) {
+        repository.addPhones(name, phones);
     }
 }

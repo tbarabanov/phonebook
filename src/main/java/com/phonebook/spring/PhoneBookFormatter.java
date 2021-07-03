@@ -18,7 +18,6 @@ import static java.lang.String.join;
 @Component
 @PropertySource("classpath:application.properties")
 public class PhoneBookFormatter {
-
     // comes from application.properties file
     @Value("${lowerCaseNames}")
     @Autowired
@@ -78,7 +77,6 @@ public class PhoneBookFormatter {
      * @param cause of an error
      */
     public void error(Throwable cause) {
-        // TODO: add your code here
         throw new UnsupportedOperationException(cause);
     }
 
